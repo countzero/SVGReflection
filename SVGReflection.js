@@ -1,6 +1,6 @@
 /*
 Name:       SVGReflection
-Version:    0.0.1 (28. November 2010)
+Version:    0.0.2 (28. November 2010)
 Author:     Finn Rudolph
 Support:    finn.rudolph@googlemail.com
 
@@ -52,16 +52,19 @@ function SVGReflection()
 		data += 'version="1.1" baseProfile="full" ';
 		data += 'width="'+width+'px" height="'+reflectedImageHeight+'px">';
 		data += '<defs>';
-		data += '<linearGradient id="gradient" x1="0%" y1="100%" x2="0%" y2="0%" >';
+		data += '<linearGradient id="gradient" x1="0%" y1="0%" x2="0%" y2="100%" >';
 		data += '<stop offset="0" stop-color="#fff" />';
+		data += '<stop offset="50%" stop-color="#fff" />';
 		data += '<stop offset="100%" stop-color="#000" />';
 		data += '</linearGradient>';
 		data += '<mask id="mask" maskContentUnits="objectBoundingBox">';
 		data += '<rect x="0" y="0" height="1" width="1" fill="url(#gradient)" />';
 		data += '</mask>';
 		data += '</defs>';
+		data += '<g mask="url(#mask)">';
 		data += '<image x="0" y="0" width="'+width+'" height="'+height+'" xlink:href="'+image+'" />';
-		data += '<image mask="url(#mask)" transform="scale(1, -1)" x="0" y="-'+reflectedImageHeight+'" width="'+width+'" height="'+height+'" xlink:href="'+image+'" />';
+		data += '<image transform="scale(1, -1)" x="0" y="-'+reflectedImageHeight+'" width="'+width+'" height="'+height+'" xlink:href="'+image+'" />';
+		data += '</g>';
 		data += '</svg>';
 	
 		/* Add SVG data, width and height to object */
