@@ -41,7 +41,30 @@ function SVGReflection()
 		
 		/* Create SVG element */
 		document.body.appendChild(svg);
+		
+		//my.createEmbed(image.width, image.height);
 	};
+	
+	
+	this.createEmbed = function(width, height)
+	{
+		var svg = '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" version="1.1" baseProfile="full" width="390px" height="600px"><defs><linearGradient id="gradient" x1="0%" y1="0%" x2="0%" y2="100%" ><stop offset="0" stop-color="#fff" /><stop offset="50%" stop-color="#fff" /><stop offset="100%" stop-color="#000" /></linearGradient><mask id="mask" maskContentUnits="objectBoundingBox"><rect x="0" y="0" height="1" width="1" fill="url(#gradient)" /></mask></defs><rect x="0" y="0" width="390" height="600" fill="none"/><g mask="url(#mask)"><image x="0" y="0" width="390" height="300" xlink:href="images/3101950593.jpg" /><image transform="scale(1, -1)" x="0" y="-600" width="390" height="300" xlink:href="images/3101950593.jpg" /></g></svg>';
+		
+		var embed = document.createElement('embed');
+		embed.setAttribute('codebase', 'http://www.adobe.com/svg/viewer/install/');
+		embed.setAttribute('classid', 'clsid:78156a80-c6a1-4bbf-8e6a-3cd390eeb4e2');
+		embed.setAttribute('pluginspage', 'http://www.adobe.com/svg/viewer/install/');
+		embed.setAttribute('src', 'blank.svg');
+		embed.setAttribute('width', width);
+		embed.setAttribute('height', height);
+		embed.setAttribute('type', 'image/svg+xml');
+		embed.setAttribute('id', 'embeddedSVG');
+	
+		document.body.appendChild(embed);
+		
+		embed.innerHTML = svg;
+	}
+	
 
 	/* Reflect the image */
 	this.reflect = function(svg, image, width, height)

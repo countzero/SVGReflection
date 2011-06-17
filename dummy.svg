@@ -12,6 +12,7 @@
 			<rect x="0" y="0" height="1" width="1" fill="url(#gradient)" />
 		</mask>
 	</defs>
+	<rect x="0" y="0" width="390" height="600" fill="none"/>
 	<g mask="url(#mask)">
 		<image x="0" y="0" width="390" height="300" xlink:href="images/3101950593.jpg" />
 		<image transform="scale(1, -1)" x="0" y="-600" width="390" height="300" xlink:href="images/3101950593.jpg" />
