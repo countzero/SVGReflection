@@ -36,10 +36,11 @@ function SVGReflection()
 		/* Get image width and height via attribute for the InternetExplorer */
 		if(image.getAttribute('width') !== null && image.getAttribute('height') !== null)
 		{
-			width = image.getAttribute('width');
-			height = image.getAttribute('height');
+			width = parseInt(image.getAttribute('width'), 10);
+			height = parseInt(image.getAttribute('height'), 10);
 		}
-		else{
+		else
+		{
 			width = image.width;
 			height = image.height;
 		}
