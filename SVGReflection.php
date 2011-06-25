@@ -44,26 +44,26 @@ class SVG
 	{
 		$image_height = $this->_image['height'] + (($this->_image['height'] / 100) * $this->_reflection['percent']);
 		
-		$this->_svg = '<svg xmlns="http://www.w3.org/2000/svg"
-	 xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events"
-	 version="1.1" baseProfile="full"
-	 width="'.$this->_image['width'].'px" height="'.$image_height.'px">
-	<defs>
-		<linearGradient id="gradient" x1="0%" y1="0%" x2="0%" y2="100%" >
-			<stop offset="0" stop-color="#fff" />
-			<stop offset="50%" stop-color="#fff" />
-			<stop offset="100%" stop-color="#000" />
-		</linearGradient>
-		<mask id="mask" maskContentUnits="objectBoundingBox">
-			<rect x="0" y="0" height="1" width="1" fill="url(#gradient)" />
-		</mask>
-	</defs>
-	<rect x="0" y="0" width="'.$this->_image['width'].'" height="'.$image_height.'" fill="none"/>
-	<g mask="url(#mask)">
-		<image x="0" y="0" width="'.$this->_image['width'].'" height="'.$this->_image['height'].'" xlink:href="'.$this->_image['url'].'" />
-		<image transform="scale(1, -1)" x="0" y="-'.$image_height.'" width="'.$this->_image['width'].'" height="'.$this->_image['height'].'" xlink:href="images/3101950593.jpg" />
-	</g>
-</svg>';
+		$this->_svg = '	<svg xmlns="http://www.w3.org/2000/svg"
+							xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events"
+							version="1.1" baseProfile="full"
+							width="'.$this->_image['width'].'px" height="'.$image_height.'px">
+						<defs>
+							<linearGradient id="gradient" x1="0%" y1="0%" x2="0%" y2="100%" >
+								<stop offset="0" stop-color="#fff" />
+								<stop offset="50%" stop-color="#fff" />
+								<stop offset="100%" stop-color="#000" />
+							</linearGradient>
+							<mask id="mask" maskContentUnits="objectBoundingBox">
+								<rect x="0" y="0" height="1" width="1" fill="url(#gradient)" />
+							</mask>
+						</defs>
+						<rect x="0" y="0" width="'.$this->_image['width'].'" height="'.$image_height.'" fill="none"/>
+						<g mask="url(#mask)">
+							<image x="0" y="0" width="'.$this->_image['width'].'" height="'.$this->_image['height'].'" xlink:href="'.$this->_image['url'].'" />
+							<image transform="scale(1, -1)" x="0" y="-'.$image_height.'" width="'.$this->_image['width'].'" height="'.$this->_image['height'].'" xlink:href="'.$this->_image['url'].'" />
+						</g>
+					</svg>';
 	}
 	
 	public function getImage()
