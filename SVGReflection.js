@@ -31,7 +31,7 @@ function SVGReflection()
 	/* Initialize */
 	this.initialize = function(image)
 	{
-		var image, reflection;
+		var percent = 50, image, reflection;
 		
 		/* Get image width and height via attribute for the InternetExplorer */
 		if(image.getAttribute('width') !== null && image.getAttribute('height') !== null)
@@ -45,11 +45,37 @@ function SVGReflection()
 			height = image.height;
 		}
 		
-		/* Create SVG object */
-		var svg = my.getSvgObject(image.src, width, height, 100);
+		/* Create an SVG object */
+		var svg = my.getSvgObject(image.src, width, height, percent);
 		
-		/* Replace source image with SVG object */
+		/* Add the SVG object to the DOM */
 		document.body.appendChild(svg);
+		
+		/* Call the scale function every 10 ms */
+		this.animation = {	counter : 200,
+							width : width,
+							height : height + ((height / 100) * percent),
+							interval : window.setInterval(function(){ my.scale(svg); }, 20) };
+		
+	};
+	
+	this.scale = function(svg)
+	{
+		var height = my.animation.height - my.animation.counter;
+		var width = (my.animation.width / my.animation.height) * height;
+		
+		/* Change the SVG object dimensions */
+		svg.setAttribute('height', height);
+		svg.setAttribute('width', width);
+
+		/* Decrease the counter */
+		my.animation.counter -= 1;
+		
+		/* Interrupt the interval after my.animation.counter rounds */
+		if(my.animation.counter < 0)
+		{
+			window.clearInterval(my.animation.interval);
+		}
 	};
 
 	this.getSvgObject = function(source, width, height, percent)
