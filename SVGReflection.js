@@ -55,7 +55,7 @@ function SVGReflection()
 		this.animation = {	counter : 200,
 							width : width,
 							height : height + ((height / 100) * percent),
-							interval : window.setInterval(function(){ my.scale(svg); }, 20) };
+							interval : window.setInterval(function(){ my.scale(svg); }, 10) };
 		
 	};
 	
