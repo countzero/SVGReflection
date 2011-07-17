@@ -52,7 +52,7 @@ function SVGReflection()
 		document.body.appendChild(svg);
 		
 		/* Call the scale function every 10 ms */
-		this.animation = {	counter : 200,
+		this.animation = {	counter : 300,
 							width : width,
 							height : height + ((height / 100) * percent),
 							interval : window.setInterval(function(){ my.scale(svg); }, 10) };
@@ -68,20 +68,22 @@ function SVGReflection()
 		svg.setAttribute('height', height);
 		svg.setAttribute('width', width);
 
-		/* Decrease the counter */
-		my.animation.counter -= 1;
-		
-		/* Interrupt the interval after my.animation.counter rounds */
-		if(my.animation.counter < 0)
+		/* Increase/decrease the counter */
+		if(my.animation.counter === 0)
 		{
-			window.clearInterval(my.animation.interval);
+			direction = -1;
 		}
+		if(my.animation.counter === 300)
+		{
+			direction = 1;
+		}
+		my.animation.counter -= 1 * direction;
 	};
 
 	this.getSvgObject = function(source, width, height, percent)
 	{
 		/* Build path to PHP script that returns the SVG */
-		var data = 'http://localhost/Entwickeln/SVGReflection/SVGReflection.php';
+		var data = window.location.protocol+'//'+window.location.hostname+window.location.pathname+'SVGReflection.php';
 		data += '?image=' + source + '&height=' + height + '&width=' + width + '&percent=' + percent;
 		
 		/* Calculate new image height = source image + reflection */
@@ -103,6 +105,12 @@ function SVGReflection()
 /* Create global instance when the DOM structure has been loaded */
 domReady(function()
 {
+	/* Start the stats tool */
+	var stats = new Stats();
+	document.body.appendChild( stats.domElement );
+	stats.domElement.id = 'stats';
+	setInterval(function () { stats.update(); }, 1000/60);
+
 	/* Reflect all images in the DOM */
 	var images = document.getElementsByTagName('IMG'),
 		max = images.length, 
